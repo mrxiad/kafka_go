@@ -9,7 +9,7 @@ import (
 type KafkaProducer struct {
 	Hosts         []string             // Kafka主机
 	Ptopic        string               // Topic
-	sendmsg       string               // 发送的消息
+	SendMsg       string               // 发送的消息
 	AsyncProducer sarama.AsyncProducer // Kafka生产者接口对象
 }
 
@@ -38,8 +38,7 @@ func (k *KafkaProducer) kafkaProcess() {
 		Topic: k.Ptopic,
 	}
 	// 信息编码
-	msg.Value = sarama.ByteEncoder(k.sendmsg)
-
+	msg.Value = sarama.ByteEncoder(k.SendMsg)
 	// 将信息发送给通道
 	k.AsyncProducer.Input() <- msg
 }

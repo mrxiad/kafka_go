@@ -58,7 +58,6 @@ func (k *KafkaConsumer) kafkaInit() {
 
 func (k *KafkaConsumer) kafkaProcess() {
 	var wg sync.WaitGroup
-
 	// 遍历指定Topic分区持续监控消息
 	Partitions, _ := k.Consumer.Partitions(k.Ctopic)
 	for _, subPartitions := range Partitions {
