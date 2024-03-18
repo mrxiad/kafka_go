@@ -1,4 +1,4 @@
-module kafka
+module kafka_go
 
 go 1.21
 

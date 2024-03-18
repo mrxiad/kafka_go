@@ -11,7 +11,7 @@ type KafkaManager struct {
 	kafkaMethod IKafkaMethod // 接口对象
 }
 
-// Run 定义实现Run方法
+// Run 定义实现Run方法,启动生产者或消费者
 func (km *KafkaManager) Run() {
 	km.kafkaMethod.kafkaInit()
 	go km.kafkaMethod.kafkaProcess()
