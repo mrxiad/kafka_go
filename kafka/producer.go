@@ -8,7 +8,7 @@ import (
 
 type KafkaProducer struct {
 	hosts         []string             // Kafka主机
-	sendmsg       string               // 消费方返回给生产方的消息
+	sendmsg       string               // 发送的消息
 	ptopic        string               // Topic
 	AsyncProducer sarama.AsyncProducer // Kafka生产者接口对象
 }

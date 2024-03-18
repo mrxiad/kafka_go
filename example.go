@@ -11,8 +11,14 @@ var (
 )
 
 func main() {
-	//测试消费者
+	//测试
 	myKafka := kafka.NewKafkaMessager(hosts, topic)
+	//初始化生产者
+	myKafka.KafkaProducer.Hosts = hosts  // 生产者host赋值
+	myKafka.KafkaProducer.Ptopic = topic // 生产者topic赋值
+	myKafka.KafkaProducer.SendMsg = "hello world"
+	myKafka.KafkaManager.Set(myKafka.KafkaProducer) // 将生产者对象赋给接口
+	myKafka.KafkaManager.Run()                      // 启动生产者
 
 	//初始化消费者
 	myKafka.KafkaConsumer.Hosts = hosts             // 消费者host赋值
@@ -25,3 +31,4 @@ func main() {
 	recv := <-myKafka.KafkaConsumer.Kchan
 	fmt.Println(recv) // 打印接收到的消息
 }
+
