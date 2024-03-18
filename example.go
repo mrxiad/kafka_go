@@ -14,7 +14,7 @@ func main() {
 	//测试
 	myKafka := kafka.NewKafkaMessager(hosts, topic)
 	//初始化生产者
-	myKafka.KafkaProducer.Hosts = hosts  // 生产者host赋值
+	myKafka.KafkaProducer.Hosts = hosts  // 生产者host赋值``
 	myKafka.KafkaProducer.Ptopic = topic // 生产者topic赋值
 	myKafka.KafkaProducer.SendMsg = "hello world"
 	myKafka.KafkaManager.Set(myKafka.KafkaProducer) // 将生产者对象赋给接口

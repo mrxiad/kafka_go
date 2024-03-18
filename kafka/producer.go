@@ -7,9 +7,9 @@ import (
 )
 
 type KafkaProducer struct {
-	hosts         []string             // Kafka主机
+	Hosts         []string             // Kafka主机
+	Ptopic        string               // Topic
 	sendmsg       string               // 发送的消息
-	ptopic        string               // Topic
 	AsyncProducer sarama.AsyncProducer // Kafka生产者接口对象
 }
 
@@ -22,7 +22,7 @@ func (k *KafkaProducer) kafkaInit() {
 	config.Version = sarama.V0_10_2_0
 
 	// 初始化一个生产者对象
-	producer, err := sarama.NewAsyncProducer(k.hosts, config)
+	producer, err := sarama.NewAsyncProducer(k.Hosts, config)
 	if err != nil {
 		err = errors.New("NewAsyncProducer错误,原因:" + err.Error())
 		fmt.Println(err.Error())
@@ -35,7 +35,7 @@ func (k *KafkaProducer) kafkaInit() {
 
 func (k *KafkaProducer) kafkaProcess() {
 	msg := &sarama.ProducerMessage{
-		Topic: k.ptopic,
+		Topic: k.Ptopic,
 	}
 	// 信息编码
 	msg.Value = sarama.ByteEncoder(k.sendmsg)
