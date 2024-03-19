@@ -23,6 +23,7 @@ func (k *KafkaProducer) kafkaInit() {
 
 	// 初始化一个生产者对象
 	producer, err := sarama.NewAsyncProducer(k.Hosts, config)
+
 	if err != nil {
 		err = errors.New("NewAsyncProducer错误,原因:" + err.Error())
 		fmt.Println(err.Error())
